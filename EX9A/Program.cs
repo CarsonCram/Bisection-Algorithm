@@ -15,7 +15,24 @@ namespace EX9A
 
             //Console.WriteLine(Q1.implementBisection(nums, input));
 
-            Q2.HumanGuess();
+            //int guess = 10001;
+            
+            //while (guess > 1000)
+            //{
+            //    Console.WriteLine("Please Enter a number between 1 and 1000");
+            //    guess = int.Parse(Console.ReadLine());
+            //    Q2.HumanGuess(guess);
+            //}
+
+            int num = 101;
+
+            while (num >100)
+            {
+                Console.WriteLine("Please choose a number between 1 and 100.");
+                num = int.Parse(Console.ReadLine());
+                Q3.ComputerGuess(num);
+            }
+
         }
     }
 }

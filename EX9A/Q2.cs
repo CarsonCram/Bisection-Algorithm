@@ -16,36 +16,40 @@ namespace EX9A
         //input the next guess. Run this multiple times and 
         //compute the average number of repetitions necessary for 
         //you to guess the number.
-        
-        public static int HumanGuess()
+
+        public static int RNG()
         {
-            int r = new Random().Next(1, 1001);
-            int guess = 1001;
+            return new Random().Next(1, 1001);
+        }
 
-            while (guess > 1000)
-            {
-                Console.WriteLine("Please Enter a number between 1 and 1000");
-                guess = int.Parse(Console.ReadLine());
-            }
+        public static int i = RNG();
 
-            while (guess != r)
+        public static int HumanGuess(int guess)
+        {
+            if (guess == i)
             {
-                if (guess == r)
+                Console.WriteLine("You guessed the number!");
+                return guess;
+            }
+            else 
+            {
+                while (guess != i)
                 {
-                    Console.WriteLine("You guessed the number!");
-                    return guess;
-                }
-                else if (guess > r)
-                {
-                    Console.WriteLine($"{guess} is too high, please try again.");
-                    guess = int.Parse(Console.ReadLine());
-                }
-                else 
-                {
-                    Console.WriteLine($"{guess} is too low, please try again.");
-                    guess = int.Parse(Console.ReadLine());
+                    if (guess > i)
+                    {
+                        Console.WriteLine($"{guess} is too high, please try again.");
+                        guess = int.Parse(Console.ReadLine());
+                        HumanGuess(guess);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{guess} is too low, please try again.");
+                        guess = int.Parse(Console.ReadLine());
+                        HumanGuess(guess);
+                    }
                 }
             }
+            return guess;
         }
     }
 }
