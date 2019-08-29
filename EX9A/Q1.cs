@@ -15,34 +15,62 @@ namespace EX9A
         //step. Use appropriate exception handling to guard against 
         //invalid input from the user.
         public static List<int> implementBisection(List<int> numsList, int input)
-
         {
             Console.WriteLine($"int value = {input}");
-            Console.WriteLine($"int[] list = {numsList}");
+            showNumsList(numsList);
 
-            List<int> answer = new List<int>();
-
-            if (input == numsList.Count / 2)
+            int mid = numsList.Count / 2;
+ 
+            if (numsList.Count % 2 == 1)
             {
-                Console.WriteLine($"value is {input}");
-                answer.Add(input);
-                return answer;
+                if (input == numsList[mid])
+                {
+                    Console.WriteLine($"The value searched for, {mid}, is the same as that given, {input}");
+                    return new List<int> { numsList[mid] };
+                }
+                else if (input > numsList[mid])
+                {
+                    Console.WriteLine($"The value is greater than {mid}");
+                    numsList.RemoveRange(0, numsList.Count - mid);
+                    numsList = implementBisection(numsList, input);
+                }
+                else if ( input < numsList[mid])
+                {
+                    Console.WriteLine($"The value is less than {mid}");
+                    numsList.RemoveRange(mid, numsList.Count - mid);
+                    numsList = implementBisection(numsList, input);
+                }
             }
-            else if (input < numsList.Count / 2)
+            else
             {
-                Console.WriteLine($"value is < {numsList.Count / 2}");
-
-                numsList.RemoveRange(numsList.Count / 2, numsList.Count - 1);
-                numsList = implementBisection(numsList, input);
+                if (input > numsList[mid - 1])
+                {
+                    Console.WriteLine($"The value is greater than {numsList[mid - 1]}");
+                    numsList.RemoveRange(0, numsList.Count - mid);
+                    numsList = implementBisection(numsList, input);
+                }
+                else if (input < numsList[mid - 1])
+                {
+                    Console.WriteLine($"The value is less than {numsList[mid]}");
+                    numsList.RemoveRange(mid, numsList.Count - 1);
+                    numsList = implementBisection(numsList, input);
+                }
+                else if (input == numsList[mid - 1])
+                {
+                    Console.WriteLine($"The value is equal to {numsList[mid - 1]}");
+                    numsList = new List<int> { numsList[mid - 1] };
+                    numsList = implementBisection(numsList, input);
+                }
             }
-            else if (input > numsList.Count / 2)
-            {
-                Console.WriteLine($"Value is > {numsList.Count / 2}");
+            return new List<int> { numsList[mid] };
+        }
 
-                numsList.RemoveRange(0, numsList.Count / 2);
-                numsList = implementBisection(numsList, input);
-            }
-            return answer;
+        static void showNumsList(List<int> numsList)
+        {
+            Console.WriteLine("List: ");
+            foreach (int num in numsList)
+                Console.Write($"{num} ");
+            Console.WriteLine();
         }
     }
 }
