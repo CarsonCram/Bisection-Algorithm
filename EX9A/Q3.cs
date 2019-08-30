@@ -13,35 +13,42 @@ namespace EX9A
     //necessary for the computer to guess the number. Have the program 
     //print the value, the guess, and the list on each repetition.
 
-       
-    class Q3                                                                                 
-    {
-        static int guess = 50;
-        public static void ComputerGuess(int num)
-        {
-            if (guess == num)
-                Console.WriteLine($"The computer guessed {guess}, which is " +
-                    $"the right answer!");
-            else 
-            {
-                while (guess != num)
-                {
-                    Console.WriteLine($"The computer guessed {guess}, " +
-                        $"too high or too low?");
-                    string input = Console.ReadLine();
 
-                    if (input == "too high")
+    class Q3
+    {
+        public static int ComputerGuess(int answer)
+        {
+            int max = 100;
+            int min = 0;
+            int mid = (max + min) / 2;
+            bool exit = false;
+
+            while (exit == false)
+            {
+                if (answer == mid)
+                {
+                    Console.WriteLine("The computer guessed {0}, which is " +
+                        "the same as the answer {1}!", mid, answer);
+                    exit = true;
+                }
+                else
+                {
+                    Console.WriteLine($"The computer guessed {mid}, too high or too low?");
+                    string direction = Console.ReadLine();
+
+                    if (direction == "too high")
                     {
-                        guess /= 2;
-                        ComputerGuess(num);
+                        max = mid;
+                        mid = (max + min) / 2;
                     }
                     else
                     {
-                        guess += (guess / 2);
-                        ComputerGuess(num);
+                        min = mid;
+                        mid = (max + min) / 2;
                     }
                 }
             }
+            return mid;
         }
     }
 }

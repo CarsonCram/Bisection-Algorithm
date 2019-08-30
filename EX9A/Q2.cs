@@ -43,7 +43,7 @@ namespace EX9A
                     }
                     else
                     {
-                        Console.WriteLine($"{guess} is too low, please try again.");
+                         Console.WriteLine($"{guess} is too low, please try again.");
                         guess = int.Parse(Console.ReadLine());
                         HumanGuess(guess);
                     }

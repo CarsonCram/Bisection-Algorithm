@@ -25,7 +25,7 @@ namespace EX9A
             {
                 if (input == numsList[mid])
                 {
-                    Console.WriteLine($"The value searched for, {mid}, is the same as that given, {input}");
+                    Console.WriteLine($"The value searched for, {numsList[mid]}, is the same as that given, {input}");
                     return new List<int> { numsList[mid] };
                 }
                 else if (input > numsList[mid])
@@ -52,7 +52,7 @@ namespace EX9A
                 else if (input < numsList[mid - 1])
                 {
                     Console.WriteLine($"The value is less than {numsList[mid]}");
-                    numsList.RemoveRange(mid, numsList.Count - 1);
+                    numsList.RemoveRange(mid - 1, numsList.Count - mid + 1);
                     numsList = implementBisection(numsList, input);
                 }
                 else if (input == numsList[mid - 1])
