@@ -13,7 +13,6 @@ namespace ConsoleApp1
 
             Console.WriteLine(num.Count);
             Console.WriteLine(num[num.Count - 1]);
-            
         }
 
     }
